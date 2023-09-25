@@ -26,6 +26,13 @@ Therefore, we would like to propose a mechanism to enable security
 researchers to audit the source code of especially-sensitive web apps
 that is (or was) sent to any user, not just to themselves.
 
+```
+# jka commentary
+Rephrasing this: we'd like a way to publish the source for content distributed
+on the web, and for recipients to confirm that the content they received from
+the server matches what was expected.
+```
+
 Our goal is only to allow detection rather than prevention of malicious
 code, possibly after the fact, as we believe this will still deter
 servers from serving malicious code. Additionally, preventing malicious
