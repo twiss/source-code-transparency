@@ -78,6 +78,75 @@ the developer of web apps to check the security of the web app, would
 additionally allow external security researchers to audit a web app, if
 it used a mechanism such as Source Code Transparency.
 
+```
+# jka commentary
+My - possibly incorrect - understanding/explanation of some of the acronyms:
+
+  * CSP: Content security policy: the server can provide instructions to a
+    client browser about the acceptable places that it should expect to
+    retrieve additional content from; images, scripts, and so on.  This allows
+    server administrators to limit the ability for attackers on their website
+    to instruct client browsers to retrieve unwanted content.  However: if the
+    attacker is able to modify the initial content download -- the attack that
+    we're intending to defend against -- then the policy in the download may
+    itself not be trustworthy.
+
+  * SRI: SubResource Integrity: within the initial content download that the
+    client browser receives, there may be hyperlinks, hyperreferences and
+    relationships to other linked content.  SRI is a way for the server to
+    provide the client with a hash of each item of linked content, so that the
+    client can deteremine whether it received the correct content.  Currently,
+    no such SRI hash is available for the initial content download (often an
+    `index.html` page, or web app `webmanifest` file) - so the initial download
+    remains a point of concern.  Additionally, browsers -- following the
+    specifications -- do not support SRI for all types of content that can be
+    downloaded from a webpage, and some content types are susceptible to
+    vulnerabilities (image formats, for example, seem to be particularly
+    problematic).
+
+  * SBOM: Software Bill of Materials: analogous to a list of items required to
+    build a product, this is a structured listing of the software dependencies
+    for a software component.  The idea is to provide assistance assessing the
+    supply chain involved in a component, and to some extent to help trace the
+    impact of vulnerabilities.  These are machine-readable, but for various
+    reasons it is generally impossible to completely rely on computerised
+    analysis to trace the effect of vulnerabilities.  Integration of software
+    components is context-sensitive and complicated.  If a furniture item's
+    bill of materials mentions a metallic plate, and it is later discovered
+    that the plate can buckle under load, it may or may not be problem for
+    the furniture item, depending on where and how the plate is used in the
+    furnishing.
+
+  * Reproducible Builds: many software components are not distributed in the
+    form of source code: instead, they are 'compiled' into a binary format that
+    is generally more performant and suitable for machines.  That's useful, but
+    it typically increases the amount of time and expertise required to
+    understand what a binary does by an order of magnitude -- and that in turn
+    means that it is extremely difficult to determine whether a binary was
+    built from a specific source code listing.
+
+    Things become even more complicated when we consider that a binary may be
+    compiled by composing multiple disparate source code listings (libraries)
+    into a single result, and that the compiler has a lot of latitude to
+    rearrange the contents of the binary without affecting the apparent
+    behaviour of the program when it runs on a computer.
+
+    Reproducible builds aims to solve this problem by placing tighter
+    constraints on how programs are built, and reducing the number of elements
+    of the binary that can change if the same program is built on two different
+    computers.
+
+    The result should be that if a thousand people in different locations all
+    around the planet build a binary from the same reproducible build source
+    code, then they should receive the exact same bit-for-bit binary, something
+    that they should be able to confer about and confirm using multiple
+    different communication and verification methods.
+
+Note: some of these technologies are mentioned side-by-side with Open Source
+software, however these techniques are equally applicable and no more or less
+technically difficult to achieve with proprietary (closed source) software.
+```
+
 ## (More) Detailed Proposal
 
 To simplify the distribution and integrity verification of web apps'
