@@ -91,14 +91,17 @@ My - possibly incorrect - understanding/explanation of some of the acronyms:
     client browser receives, there may be hyperlinks, hyperreferences and
     relationships to other linked content.  SRI is a way for the server to
     provide the client with a hash of each item of linked content, so that the
-    client can deteremine whether it received the correct content.  Currently,
-    no such SRI hash is available for the initial content download (often an
-    `index.html` page, or web app `webmanifest` file) - so the initial download
-    remains a point of concern.  Additionally, browsers -- following the
-    specifications -- do not support SRI for all types of content that can be
-    downloaded from a webpage, and some content types are susceptible to
-    vulnerabilities (image formats, for example, seem to be particularly
-    problematic).
+    client can deteremine whether it has received the correct content
+    if-and-when it retrieves content from those references.
+
+    Currently, no such SRI hash is available for the initial content download
+    (often an `index.html` page, or web app `webmanifest` file) - so the
+    initial download could be considered a weak point.
+
+    Additionally, browsers -- following the specifications -- do not support
+    SRI for all types of content that can be referenced from a webpage, and
+    some content types are susceptible to vulnerabilities (image formats, for
+    example, seem to be particularly problematic).
 
   * SBOM: Software Bill of Materials: analogous to a list of items required to
     build a product, this is a structured listing of the software dependencies
