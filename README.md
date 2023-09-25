@@ -185,5 +185,32 @@ domain of the web app include this extension. Browser would refuse to
 load web apps without Source Code Transparency from a domain using a
 certificate with this extension.
 
+```
+# jka commentary
+This seems OK, although I'd note that many web clients don't use Transport
+Layer Security (TLS - also known as HTTPS), required for X.509 certificates.
+
+Certainly the most popular websites do use TLS -- I would argue that they have
+an incentive not to allow any of their competitors or new market entrants to
+inspect or learn from much, if any, of their web traffic.  Those clients and
+applications could be excluded from integrity guarantees as a result.
+
+Draft specifications to provide web request (HTTP) integrity without a
+requirement for the use of TLS do exist; notably HTTP Message Signatures:
+https://www.ietf.org/archive/id/draft-ietf-httpbis-message-signatures-06.html
+
+In contrast I'd mention that all browsers already support DNS (Domain Name
+System) queries, because resolving website URLs, except in rare or unusual
+cases, requires DNS lookups.  A suitable DNS record could be offered to plug
+the SRI (SubResource Integrity) gap that exists on initial-content download.
+
+However: DNS also has its own limitations, and I'm not an expert with it.  I
+suggest it mainly because it seems far enough outside the scope of the
+webserver and source code to be difficult for an attacker to tamper with, and
+replicated and inspectable enough for independent verification to be possible.
+There does remain the possibility for individuals to be targeted with network-
+local DNS poisioning that could be impossible for them to detect on their own.
+```
+
 [1]: https://certificate.transparency.dev/
 [2]: https://wpack-wg.github.io/bundled-responses/draft-ietf-wpack-bundled-responses.html
