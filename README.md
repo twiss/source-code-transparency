@@ -169,6 +169,14 @@ included in it, and warn the user if not. To still allow instantaneous
 deploys, we could allow this check to be done some time after loading
 the web app, at the cost of delayed warnings in case of issues.
 
+```
+# jka commentary
+I think this is probably implicit/agreeing with the above, but to make sure:
+in the case of web applications, I think that the client should wait until
+a verification hash is available for an updated version of an application
+before the corresponding content is run or loaded.
+```
+
 To signal to the browser that a given web app is using Source Code
 Transparency, we could introduce a X.509 certificate extension, which
 would automatically be included in the Certificate Transparency logs,
