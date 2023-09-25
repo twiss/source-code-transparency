@@ -51,6 +51,26 @@ security researchers can check the transparency log for all published
 versions of a given web app, and check that none of them contain any
 malicious code.
 
+```
+# jka commentary
+A few observations here:
+
+  * A second channel to obtain the 'expected' content -- or a
+    cryptographically strong assertion that we can rely on to confirm whether
+    we've received matching/mismatching content is required with any approach.
+
+  * That second channel becomes an element in the chain-of-trust; we want it
+    to be as difficult as possible for potential attackers to disrupt, and as
+    easy as possible for our colleages / peers / security researchers to
+    verify independently.
+
+  * To some extent I'd argue that source control repositories (particularly
+    `git`, `fossil` and `hg`) provide some of the transparency and
+    cryptographic properties desired here.  However, there is no single
+    location where repositories are aggregated - and that may be a benefit
+    under some threat models.
+```
+
 To aid the auditing process, web apps may want to employ additional
 existing and proposed security mechanisms, such as CSP, SRI, SBOMs,
 reproducible builds, etc. These mechanisms, which currently only allow
